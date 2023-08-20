@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org>">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+</head>
+<body>
+    <h4>Book title:</h4>
+    <p th:text="${book.getName()}">VALUE</p>
+    <h4>Book ID:</h4>
+    <p th:text="${book.getId()}">VALUE</p>
+    <h4>Book author:</h4>
+    <p th:text="${book.getAuthor()}"></p>
+    <h4>Book publisher:</h4>
+    <p th:text="${book.getPublisher()}"></p>
+    <h4>Book country:</h4>
+    <p th:text="${book.getCountry()}"></p>
+    <h4>Book language:</h4>
+    <p th:text="${book.getLanguage()}"></p>
+    <h4>Book publication date:</h4>
+    <p th:text="${book.getPublicationDate()}"></p>
+    <h4>Book isbn:</h4>
+    <p th:text="${book.getIsbn()}"></p>
+    <h4>Book price</h4>
+    <p th:text="${book.getPrice()}"></p>
+
+    <form th:method="GET" th:action="@{/book}">
+        <input type="submit" value="Return to book list">
+    </form>
+</body>
+</html>

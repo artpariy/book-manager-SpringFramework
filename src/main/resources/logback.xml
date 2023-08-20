@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<!--    <Properties>/-->
+<!--        <Property name="LOG_PATH" value="${sys:catalina.base}/logs"/>-->
+<!--    </Properties>-->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${catalina.base}/logs/book_manager_logs.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{dd.MM.yyyy HH:mm:ss.SSS} [%thread] %-5level  %logger{20} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

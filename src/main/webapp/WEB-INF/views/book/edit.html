@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org>">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit book</title>
+</head>
+<body>
+    <form th:method="PATCH" th:action="@{/book/{id}(id=${book.getId()})}" th:object="${book}">
+      <label for="name">Enter book name:</label>
+      <input type="text" th:field="*{name}" id="name">
+      <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+      <br/>
+      <label for="author">Enter author:</label>
+      <input type="text" th:field="*{author}" id="author">
+      <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>
+      <br/>
+
+      <label for="publisherId">Select publisher:</label>
+      <select th:field="*{publisherId}" id="publisherId"></select>
+      <br/>
+      <label for="countryId">Select country:</label>
+      <select th:field="*{countryId}" id="countryId"></select>
+      <br/>
+      <label for="languageId">Select language:</label>
+      <select th:field="*{languageId}" id="languageId"></select>
+      <br/>
+
+      <label for="date">Enter publication date:</label>
+      <input type="text" th:field="*{publicationDate}" id="date">
+      <div style="color:red" th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}">Date error</div>
+      <br/>
+      <label for="isbn">Enter book isbn:</label>
+      <input type="text" th:field="*{isbn}" id="isbn">
+      <div style="color:red" th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">isbn error</div>
+      <br/>
+      <label for="price">Enter book price</label>
+      <input type="text" th:field="*{price}" id="price">
+      <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price error</div>
+      <br/>
+      <input type="submit" value="Update"/>
+    </form>
+    <form th:method="GET" th:action="@{/book}">
+      <input type="submit" value="Return to book list">
+    </form>
+
+    <script>
+         const request1 = new XMLHttpRequest();
+         request1.open("GET", "/book-manager-core-app/publisher", true);
+         request1.getResponseHeader("Content-type", "application/json");
+
+    request1.onload = function() {
+        const obj = JSON.parse(this.responseText);
+        console.log(obj);
+        var selectElement = document.getElementById('publisherId');
+        obj.map(item => selectElement.appendChild(new Option(item.name, item.id)).cloneNode(true));
+    }
+    request1.send();
+    </script>
+
+    <script>
+        const request2 = new XMLHttpRequest();
+        request2.open("GET", "/book-manager-core-app/country", true);
+        request2.getResponseHeader("Content-type", "application/json");
+
+        request2.onload = function() {
+            const obj = JSON.parse(this.responseText);
+            console.log(obj);
+            var selectElement = document.getElementById('countryId');
+            obj.map(item => selectElement.appendChild(new Option(item.name, item.id)).cloneNode(true));
+        }
+        request2.send();
+    </script>
+
+    <script>
+        const request3 = new XMLHttpRequest();
+        request3.open("GET", "/book-manager-core-app/language", true);
+        request3.getResponseHeader("Content-type", "application/json");
+
+        request3.onload = function() {
+            const obj = JSON.parse(this.responseText);
+            console.log(obj);
+            var selectElement = document.getElementById('languageId');
+            obj.map(item => selectElement.appendChild(new Option(item.name, item.id)).cloneNode(true));
+        }
+        request3.send();
+    </script>
+
+</body>
+</html>
